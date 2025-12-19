@@ -1,13 +1,28 @@
-name = "Scrypt"
+name = "Scrypt2"
 uuid = "cacaa230-b7af-4cf5-912a-7a35fdee004e"
-authors = ["Dr. Jiacheng Chuan <jiacheng_chuan@outlook.com> and contributors"]
 version = "1.0.0-DEV"
+authors = ["Dr. Jiacheng Chuan <jiacheng_chuan@outlook.com> and contributors"]
 
-[compat]
-julia = "1.10.10"
+[deps]
+Nettle = "49dea1ee-f6fa-5aa6-9a11-8816cee7d4b9"
+Nettle_jll = "4c82536e-c426-54e4-b420-14f461c4ed8b"
+PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
+
+[weakdeps]
+JobSchedulers = "eeff360b-c02d-44d3-ab26-4013c616a17e"
+
+[extensions]
+Scrypt2ExtJobSchedulers = "JobSchedulers"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Test", "JobSchedulers"]
+
+[compat]
+Nettle = "1"
+Nettle_jll = "3"
+PrecompileTools = "1"
+JobSchedulers = "0.9, 0.10, 0.11, 0.12, 0.13, 1"
+julia = "1.8"
