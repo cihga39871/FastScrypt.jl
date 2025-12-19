@@ -1,0 +1,13 @@
+name = "Scrypt"
+uuid = "cacaa230-b7af-4cf5-912a-7a35fdee004e"
+authors = ["Dr. Jiacheng Chuan <jiacheng_chuan@outlook.com> and contributors"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.10.10"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
