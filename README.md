@@ -1,6 +1,6 @@
 # FastScrypt.jl
 
-[![Build Status](https://github.com/cihga39871/Scrypt.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/cihga39871/Scrypt.jl/actions/workflows/CI.yml?query=branch%3Amain)
+![Build Status](https://github.com/cihga39871/FastScrypt.jl/actions/workflows/CI.yml/badge.svg?branch=main)
 
 Scrypt is a password-based key derivation function (KDF) designed to be **memory-hard** and **computationally expensive**, making it significantly more resistant to brute-force attacks and hardware-accelerated cracking (especially GPU/ASIC attacks) compared to earlier functions like PBKDF2, bcrypt, or SHA-256.
 
