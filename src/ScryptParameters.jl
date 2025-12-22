@@ -211,9 +211,9 @@ LICENSE: Apache License 2.0 (https://github.com/BioTurboNick/Scrypt.jl/blob/v0.2
 
 A struct to hold Scrypt parameters.
 # Parameters
-- `r::Int`: Element length multiplier. Must be > 0.
-- `N::Int`: Processing cost factor. Must be a power of 2, > 1.
-- `p::Int`: Parallelization. Must be > 0.
+- `r::Int`: Block size factor. Affects how much memory is used per "chunk" of work. Must be > 0.
+- `N::Int`: CPU/Memory cost factor. The biggest number — controls how much memory and time the function uses. Higher N = more secure, but also slower and uses more memory. Must be a power of 2, > 1.
+- `p::Int`: Parallelization factor. How many independent tasks can run at the same time. Higher p = uses more CPU cores, but also multiplies the total memory needed. Must be > 0.
 """
 struct ScryptParameters
     r::Int  # element length multiplier
