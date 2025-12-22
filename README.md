@@ -1,4 +1,4 @@
-# Scrypt2.jl
+# FastScrypt.jl
 
 [![Build Status](https://github.com/cihga39871/Scrypt.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/cihga39871/Scrypt.jl/actions/workflows/CI.yml?query=branch%3Amain)
 
@@ -14,7 +14,7 @@ The package uses the same algorithm as Scrypt.jl, and
 ## Quick Usage
 
 ```julia
-using Scrypt2
+using FastScrypt
 
 r = 8
 N = 16384
@@ -49,7 +49,7 @@ Parameters:
 - `N::Int`: CPU/Memory cost factor. The biggest number — controls how much memory and time the function uses. Higher N = more secure, but also slower and uses more memory. Must be a power of 2, > 1.
 - `p::Int`: Parallelization factor. How many independent tasks can run at the same time. Higher p = uses more CPU cores, but also multiplies the total memory. Must be > 0.
 
-Note: In Scrypt2.jl, if you use single-threaded `scrypt` with `p>1`, memory buffer will be reused, so the peak memory is roughly `1/p` of parallel version `scrypt_threaded`.
+Note: In FastScrypt.jl, if you use single-threaded `scrypt` with `p>1`, memory buffer will be reused, so the peak memory is roughly `1/p` of parallel version `scrypt_threaded`.
 
 ### `scrypt`
 
@@ -84,7 +84,7 @@ It uses `JobSchedulers.jl` to parallelize the computation if `parameters.p > 1`.
 
 ## Consistency and Speed Benchmark with Scrypt.jl
 
-Test using Julia v1.12.1 (20 threads), Scrypt v0.2.1, Scrypt2 v1.0.0.
+Test using Julia v1.12.1 (20 threads), Scrypt v0.2.1, FastScrypt v1.0.0.
 
 The general concept is to test different parameters with random keys and salts, and compute the average time and memory used for each scrypt function.
 
@@ -94,7 +94,7 @@ Test script is as follows:
 # julia -t 20
 
 import Scrypt
-import Scrypt2
+import FastScrypt
 using Test
 
 function gcdff_add(a::Base.GC_Diff, b::Base.GC_Diff)
@@ -127,7 +127,7 @@ end
 
 function consistency_test_and_benchmark(r::Int, N::Int, p::Int; num_test=100) # r,N,p: Scrypt parameters
     param = Scrypt.ScryptParameters(r,N,p)
-    param2 = Scrypt2.ScryptParameters(r,N,p)
+    param2 = FastScrypt.ScryptParameters(r,N,p)
 
     old_timed_add = @timed nothing
     new_timed_add = @timed nothing
@@ -140,7 +140,7 @@ function consistency_test_and_benchmark(r::Int, N::Int, p::Int; num_test=100) # 
             dklen = rand(16:128)
 
             old = @timed Scrypt.scrypt(param, key, salt, dklen)
-            new = @timed Scrypt2.scrypt(param2, key, salt, dklen)
+            new = @timed FastScrypt.scrypt(param2, key, salt, dklen)
 
             @test old.value == new.value
 
@@ -148,7 +148,7 @@ function consistency_test_and_benchmark(r::Int, N::Int, p::Int; num_test=100) # 
             new_timed_add = timed_add(new_timed_add, new)
 
             if p > 1
-                new_threaded = @timed Scrypt2.scrypt_threaded(param2, key, salt, dklen)
+                new_threaded = @timed FastScrypt.scrypt_threaded(param2, key, salt, dklen)
                 @test new.value == new_threaded.value
                 new_threaded_timed_add = timed_add(new_threaded_timed_add, new_threaded)
             end

@@ -1,5 +1,5 @@
-name = "Scrypt2"
-uuid = "cacaa230-b7af-4cf5-912a-7a35fdee004e"
+name = "FastScrypt"
+uuid = "cacaa230-b7af-4cf5-912a-7a35fdee004f"
 version = "1.0.0"
 authors = ["Dr. Jiacheng Chuan <jiacheng_chuan@outlook.com> and contributors"]
 
@@ -12,7 +12,7 @@ PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
 JobSchedulers = "eeff360b-c02d-44d3-ab26-4013c616a17e"
 
 [extensions]
-Scrypt2ExtJobSchedulers = "JobSchedulers"
+FastScryptExtJobSchedulers = "JobSchedulers"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

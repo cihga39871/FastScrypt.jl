@@ -1,4 +1,4 @@
-module Scrypt2
+module FastScrypt
 
 export ScryptParameters, scrypt, scrypt_threaded
 
@@ -300,4 +300,4 @@ end
 
 include("precompile.jl")
 
-end  # module Scrypt2
+end  # module FastScrypt
